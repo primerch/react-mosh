@@ -15,7 +15,7 @@ export default function Users() {
     const abortController = new AbortController();
 
     apiClient
-      .get<>("/users", {
+      .get<User[]>("/users", {
         signal: abortController.signal,
       })
       .then(({ data }) => {
@@ -36,7 +36,7 @@ export default function Users() {
     setUsers([...originalUsers, newUser]);
 
     apiClient
-      .post("/users", newUser)
+      .post<User>("/users", newUser)
       .then(({ data }) => setUsers([...originalUsers, data]))
       .catch((e) => {
         setError(e.message);
@@ -48,7 +48,7 @@ export default function Users() {
     const originalUsers = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
 
-    apiClient.delete("/users/" + user.id).catch((e) => {
+    apiClient.delete<User>("/users/" + user.id).catch((e) => {
       setError(e);
       setUsers(originalUsers);
     });
@@ -64,7 +64,7 @@ export default function Users() {
     // PUT - for full resource replacement (recommended when sending complete object)
     // PATCH - for partial updates (current implementation)
     apiClient
-      .patch("/users/" + user.id, updatedUser)
+      .patch<User>("/users/" + user.id, updatedUser)
       .then((res) => console.log(res))
       .catch((e) => {
         setError(e.message);
