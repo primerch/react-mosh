@@ -41,12 +41,10 @@ export default function Users() {
     const originalUsers = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
 
-    apiClient
-      .delete("https://jsonplaceholder.typicode.com/users/" + user.id)
-      .catch((e) => {
-        setError(e);
-        setUsers(originalUsers);
-      });
+    userService.deleteUser(user.id).catch((e) => {
+      setError(e);
+      setUsers(originalUsers);
+    });
   };
 
   const updateUser = (user: User) => {

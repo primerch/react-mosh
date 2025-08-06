@@ -19,5 +19,9 @@ class UserService {
 
     return { request, cancel: () => abortController.abort() };
   }
+
+  deleteUser(id: number) {
+    return apiClient.delete("https://jsonplaceholder.typicode.com/users/" + id);
+  }
 }
 export default new UserService();
