@@ -10,18 +10,26 @@ class UserService {
   getAllUsers() {
     const abortController = new AbortController();
 
-    const request = apiClient.get<User[]>(
-      "https://jsonplaceholder.typicode.com/users",
-      {
-        signal: abortController.signal,
-      },
-    );
+    const request = apiClient.get<User[]>("/users", {
+      signal: abortController.signal,
+    });
 
     return { request, cancel: () => abortController.abort() };
   }
 
+  createUser(user: User) {
+    return apiClient.post("/users", user);
+  }
+
   deleteUser(id: number) {
-    return apiClient.delete("https://jsonplaceholder.typicode.com/users/" + id);
+    return apiClient.delete("/users/" + id);
+  }
+
+  updateUser(user: User) {
+    return apiClient.patch(
+      "https://jsonplaceholder.typicode.com/users/" + user.id,
+      user,
+    );
   }
 }
 export default new UserService();

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "./services/api-client";
+import { CanceledError } from "./services/api-client";
 import type { User } from "./services/user-service";
 import userService from "./services/user-service";
 
-export default function Users() {
+export default function UserApp() {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState<string>("");
 
@@ -28,8 +28,8 @@ export default function Users() {
 
     setUsers([...originalUsers, newUser]);
 
-    apiClient
-      .post("https://jsonplaceholder.typicode.com/users", newUser)
+    userService
+      .createUser(newUser)
       .then(({ data }) => setUsers([...originalUsers, data]))
       .catch((e) => {
         setError(e.message);
@@ -56,11 +56,8 @@ export default function Users() {
     // Since we have a complete user object, we can use either:
     // PUT - for full resource replacement (recommended when sending complete object)
     // PATCH - for partial updates (current implementation)
-    apiClient
-      .patch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id,
-        updatedUser,
-      )
+    userService
+      .updateUser(updatedUser)
       .then((res) => console.log(res))
       .catch((e) => {
         setError(e.message);
