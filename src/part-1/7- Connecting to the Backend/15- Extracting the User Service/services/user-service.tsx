@@ -26,10 +26,7 @@ class UserService {
   }
 
   updateUser(user: User) {
-    return apiClient.patch(
-      "https://jsonplaceholder.typicode.com/users/" + user.id,
-      user,
-    );
+    return apiClient.patch("/users/" + user.id, user);
   }
 }
 export default new UserService();
