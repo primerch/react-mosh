@@ -1,7 +1,7 @@
 import usePosts from "./hook/usePosts";
 
 const PostList = () => {
-  const { data, error, isLoading } = usePosts();
+  const { data: posts, error, isLoading } = usePosts();
 
   if (isLoading) return <div>isLoading...</div>;
 
@@ -18,7 +18,7 @@ const PostList = () => {
         </tr>
       </thead>
       <tbody>
-        {data?.map((post) => (
+        {posts?.map((post) => (
           <tr key={post.id}>
             <td>{post.userId}</td>
             <td>{post.id}</td>

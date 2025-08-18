@@ -11,8 +11,11 @@ interface Post {
 const fetchPosts = async () =>
   (await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")).data;
 
-const usePosts = () => {
-  return useQuery<Post[], Error>({ queryKey: ["posts"], queryFn: fetchPosts });
-};
+const usePosts = () =>
+  useQuery<Post[], Error>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    staleTime: 60000, // 1m
+  });
 
 export default usePosts;
