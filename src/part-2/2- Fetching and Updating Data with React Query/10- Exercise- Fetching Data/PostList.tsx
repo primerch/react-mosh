@@ -19,7 +19,7 @@ const PostList = () => {
       </thead>
       <tbody>
         {data?.map((post) => (
-          <tr>
+          <tr key={post.id}>
             <td>{post.userId}</td>
             <td>{post.id}</td>
             <td>{post.title}</td>

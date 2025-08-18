@@ -12,7 +12,7 @@ const fetchPosts = async () =>
   (await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")).data;
 
 const usePosts = () => {
-  return useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
+  return useQuery<Post[], Error>({ queryKey: ["posts"], queryFn: fetchPosts });
 };
 
 export default usePosts;
