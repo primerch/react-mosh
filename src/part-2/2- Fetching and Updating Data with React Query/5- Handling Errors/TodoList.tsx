@@ -17,7 +17,6 @@ const TodoList = () => {
   const { data: todos, error } = useQuery<Todo[], Error>({
     queryKey: ["todos"],
     queryFn: fetchTodos,
-    retry: false,
   });
 
   if (error) return <span className="text-error">{error.message}</span>;
