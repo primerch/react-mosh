@@ -32,10 +32,9 @@ const PostList = () => {
         ))}
       </ul>
       <button
+        disabled={page === 1}
         className="btn btn-primary mr-3"
-        onClick={() => {
-          if (page > 1) setPage(page - 1);
-        }}
+        onClick={() => setPage(page - 1)}
       >
         Prev
       </button>

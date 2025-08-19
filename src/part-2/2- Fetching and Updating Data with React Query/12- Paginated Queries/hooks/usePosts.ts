@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 interface Post {
   userId: number;
@@ -26,6 +26,7 @@ const usePosts = (query: PostQuery) => {
           },
         })
         .then((res) => res.data),
+    placeholderData: keepPreviousData,
   });
 };
 
