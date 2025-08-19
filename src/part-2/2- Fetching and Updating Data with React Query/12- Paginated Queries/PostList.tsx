@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import usePosts from "./hooks/usePosts.ts";
 
 const PostList = () => {
-  const [userId, setUserId] = useState<number | undefined>();
-  const { data: posts, error, isLoading } = usePosts(userId);
+  const { data: posts, error, isLoading } = usePosts();
 
   const users = [
     { userId: 1, userText: "User 1" },
@@ -18,21 +17,6 @@ const PostList = () => {
 
   return (
     <>
-      <select
-        className="select"
-        onChange={(e) => {
-          const value = e.target.value;
-          setUserId(value ? parseInt(value) : undefined);
-        }}
-        value={userId || ""}
-      >
-        <option value=""></option>
-        {users.map((user) => (
-          <option key={user.userId} value={user.userId}>
-            {user.userText}
-          </option>
-        ))}
-      </select>
       <ul className="list">
         {posts?.map((post) => (
           <li className="list-row" key={post.id}>
