@@ -1,52 +1,33 @@
-import React, { useState } from "react";
-import usePosts, { type PostQuery } from "./hooks/usePosts.ts";
+import usePosts from "./hooks/usePosts.ts";
 
 const PostList = () => {
-  const [page, setPage] = useState(1);
-
-  const queryObject: PostQuery = {
-    page: page,
-    pageSize: 10,
-  };
-
-  const { data: posts, error, isLoading } = usePosts(queryObject);
-
-  const users = [
-    { userId: 1, userText: "User 1" },
-    { userId: 2, userText: "User 2" },
-    { userId: 3, userText: "User 3" },
-  ];
+  const { data: posts, error, isLoading } = usePosts();
 
   if (isLoading)
     return <span className="loading loading-ball loading-xl">Loading...</span>;
-
   if (error) return <span className="text-error">{error.message}</span>;
 
   return (
-    <>
-      <ul className="list">
+    <table className="table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Post ID</th>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+      <tbody>
         {posts?.map((post) => (
-          <li className="list-row" key={post.id}>
-            {post.title}
-          </li>
+          <tr>
+            <td>{post.userId}</td>
+            <td>{post.id}</td>
+            <td>{post.title}</td>
+            <td>{post.body}</td>
+          </tr>
         ))}
-      </ul>
-      <button
-        disabled={page === 1}
-        className="btn btn-primary mr-3"
-        onClick={() => setPage(page - 1)}
-      >
-        Prev
-      </button>
-      <button
-        className="btn btn-primary"
-        onClick={() => {
-          setPage(page + 1);
-        }}
-      >
-        Next
-      </button>
-    </>
+      </tbody>
+    </table>
   );
 };
 export default PostList;
