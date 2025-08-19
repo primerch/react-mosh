@@ -21,7 +21,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-console.log(queryClient);
 
 // This code is only for TypeScript
 declare global {
