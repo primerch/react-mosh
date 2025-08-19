@@ -1,8 +1,15 @@
-import React from "react";
-import usePosts from "./hooks/usePosts.ts";
+import React, { useState } from "react";
+import usePosts, { type PostQuery } from "./hooks/usePosts.ts";
 
 const PostList = () => {
-  const { data: posts, error, isLoading } = usePosts();
+  const [page, setPage] = useState(1);
+
+  const queryObject: PostQuery = {
+    page: page,
+    pageSize: 10,
+  };
+
+  const { data: posts, error, isLoading } = usePosts(queryObject);
 
   const users = [
     { userId: 1, userText: "User 1" },
@@ -24,6 +31,22 @@ const PostList = () => {
           </li>
         ))}
       </ul>
+      <button
+        className="btn btn-primary mr-3"
+        onClick={() => {
+          if (page > 1) setPage(page - 1);
+        }}
+      >
+        Prev
+      </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => {
+          setPage(page + 1);
+        }}
+      >
+        Next
+      </button>
     </>
   );
 };
