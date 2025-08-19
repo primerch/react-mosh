@@ -18,10 +18,10 @@ const TodoForm = () => {
       console.log(savedTodo);
       console.log(newTodo);
 
-      // Approach A: Invalidating the cache
+      // Approach A: Invalidating the cache, refetch todos from server (slower, but always fresh)
       // queryClient.invalidateQueries({ queryKey: ["todos"] });
 
-      // Approach B: Updating the data in the cache directly
+      // Approach B: Updating the data in the cache directly, Add new todo to existing cache (faster, optimistic update)
       queryClient.setQueryData<Todo[]>(["todos"], (todos) => [
         ...(todos || []),
         savedTodo,
