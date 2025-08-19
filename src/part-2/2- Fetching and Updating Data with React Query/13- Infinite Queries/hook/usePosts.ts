@@ -1,8 +1,4 @@
-import {
-  type InfiniteData,
-  keepPreviousData,
-  useInfiniteQuery,
-} from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 interface Post {
@@ -17,13 +13,7 @@ interface PostQuery {
 }
 
 const usePosts = (query: PostQuery) => {
-  return useInfiniteQuery<
-    Post[],
-    Error,
-    InfiniteData<Post[]>,
-    [string, PostQuery],
-    number
-  >({
+  return useInfiniteQuery({
     initialPageParam: 1,
     queryKey: ["posts", query],
     queryFn: ({ pageParam }) =>
