@@ -1,3 +1,4 @@
+import React from "react";
 import usePosts from "./hook/usePosts.ts";
 
 const query = {
@@ -5,8 +6,7 @@ const query = {
 };
 
 const PostList = () => {
-  const { data, fetchNextPage } = usePosts(query);
-  console.log(data);
+  const { data, fetchNextPage, isFetchingNextPage } = usePosts(query);
 
   return (
     <>
@@ -20,22 +20,26 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.pages.map((page) => (
-            <>
+          {data?.pages.map((page, index) => (
+            <React.Fragment key={index}>
               {page.map((post) => (
-                <tr>
+                <tr key={post.id}>
                   <td>{post.userId}</td>
                   <td>{post.id}</td>
                   <td>{post.title}</td>
                   <td>{post.body}</td>
                 </tr>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </tbody>
       </table>
-      <button className="btn btn-primary mr-5" onClick={() => fetchNextPage()}>
-        Show More
+      <button
+        disabled={isFetchingNextPage}
+        className="btn btn-primary mr-5"
+        onClick={() => fetchNextPage()}
+      >
+        {isFetchingNextPage ? "Loading..." : "Load More"}
       </button>
     </>
   );
