@@ -1,6 +1,6 @@
 import useTodos from './hooks/useTodos.tsx';
 
-export const TodoList = () => {
+const TodoList = () => {
   const { data: todos } = useTodos();
 
   return (
@@ -26,3 +26,5 @@ export const TodoList = () => {
     </table>
   );
 };
+
+export default TodoList;
