@@ -12,11 +12,6 @@ const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   const addMutation = useMutation<Todo, Error, Todo, AddTodoContext>({
-    mutationFn: (todo: Todo) =>
-      axios
-        .post<Todo>('https://jsonplaceholder.typicode.com/todossss', todo)
-        .then((res) => res.data),
-
     onMutate: (newTodo: Todo) => {
       const previousTodos = queryClient.getQueryData<Todo[]>(['todos']) || [];
 
@@ -28,6 +23,11 @@ const TodoForm = () => {
 
       return { previousTodos };
     },
+
+    mutationFn: (todo: Todo) =>
+      axios
+        .post<Todo>('https://jsonplaceholder.typicode.com/todossss', todo)
+        .then((res) => res.data),
 
     onSuccess: (savedTodo, newTodo) => {
       // queryClient.invalidateQueries({ queryKey: ['todos'] });
