@@ -32,7 +32,9 @@ const TodoForm = () => {
     onSuccess: (savedTodo, newTodo) => {
       // queryClient.invalidateQueries({ queryKey: ['todos'] });
       queryClient.setQueryData<Todo[]>(['todos'], (todos) => {
-        return todos?.map((todo) => (todo === newTodo ? savedTodo : todo));
+        return todos?.map((todo) =>
+          todo.id === newTodo.id ? savedTodo : todo,
+        );
       });
     },
 
