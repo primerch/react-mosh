@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import useAddTodo from './hooks/useAddTodo.ts';
-import type { Todo } from './hooks/todo.tsx';
+import type { Todo } from './todo.tsx';
 
 const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import type { Todo } from './todo.tsx';
+import type { Todo } from '../todo.tsx';
 import { CACHE_KEY_TODOS } from '../constants.ts';
 
 interface AddTodoContext {
