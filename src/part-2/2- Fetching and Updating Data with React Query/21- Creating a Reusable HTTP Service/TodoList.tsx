@@ -1,4 +1,4 @@
-import useTodos from './hooks/useTodos.ts';
+import useTodos from './hooks/useTodos.tsx';
 
 const TodoList = () => {
   const { data: todos } = useTodos();
