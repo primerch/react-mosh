@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import useAddTodo from './hooks/useAddTodo.ts';
-import type { Todo } from './todo.tsx';
 
 const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -25,7 +24,7 @@ const TodoForm = () => {
     >
       <input type="text" className="mr-5" ref={ref} />
       <button disabled={addTodoMutation.isPending} className="btn btn-primary">
-        {addTodoMutation.isPending ? 'Loading...' : 'Add'}
+        Add
       </button>
     </form>
   );
