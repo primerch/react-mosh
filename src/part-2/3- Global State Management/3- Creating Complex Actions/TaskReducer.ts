@@ -1,16 +1,29 @@
-import type { Task } from './TaskList';
-
 interface Action {
   type: 'ADD' | 'DELETE';
   payload?: number;
 }
+interface Task {
+  id: number;
+  title: string;
+}
 
-const reducer = (state: Task[], action: Action) => {
-  if (action.type === 'ADD')
-    return [{ id: Date.now(), title: 'Task ' + Date.now() }, ...state];
+interface AddTask {
+  type: 'ADD';
+  task: Task;
+}
+
+interface DeleteTask {
+  type: 'DELETE';
+  taskId: number;
+}
+type TaskAction = AddTask | DeleteTask;
+
+// current state
+const reducer = (tasks: Task[], action: TaskAction): Task[] => {
+  if (action.type === 'ADD') return [action.task, ...tasks];
   if (action.type === 'DELETE')
-    return state.filter((task) => task.id !== action.payload);
-  return state;
+    return tasks.filter((task) => task.id !== action.taskId);
+  return tasks;
 };
 
 export default reducer;

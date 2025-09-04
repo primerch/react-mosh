@@ -1,11 +1,6 @@
 import { useReducer } from 'react';
 import reducer from './TaskReducer';
 
-export interface Task {
-  id: number;
-  title: string;
-}
-
 const TaskList = () => {
   //   const [tasks, setTasks] = useState<Task[]>([]);
 
@@ -17,7 +12,10 @@ const TaskList = () => {
         className="btn btn-primary"
         onClick={() =>
           //   setTasks([{ id: Date.now(), title: 'Task ' + Date.now() }, ...tasks])
-          dispatch({ type: 'ADD' })
+          dispatch({
+            type: 'ADD',
+            task: { id: Date.now(), title: 'Task ' + Date.now() },
+          })
         }
       >
         Add Task
@@ -29,7 +27,7 @@ const TaskList = () => {
             <button
               className="btn btn-secondary my-2"
               //   onClick={() => setTasks(tasks.filter((t) => t.id !== task.id))}
-              onClick={() => dispatch({ type: 'DELETE', payload: task.id })}
+              onClick={() => dispatch({ type: 'DELETE', taskId: task.id })}
             >
               Delete
             </button>
