@@ -1,7 +1,3 @@
-interface Action {
-  type: 'ADD' | 'DELETE';
-  payload?: number;
-}
 interface Task {
   id: number;
   title: string;
