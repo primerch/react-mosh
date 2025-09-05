@@ -20,7 +20,7 @@ import './index.css';
 //   },
 // });
 
-// // This code is only for TypeScript
+// // This code is only for undefined TypeScript
 // declare global {
 //   interface Window {
 //     __TANSTACK_QUERY_CLIENT__: import("@tanstack/query-core").QueryClient;
