@@ -1,16 +1,13 @@
-import "./App.css";
-import ListGroup from "./2- Vanilla CSS.tsx";
+import A from '../../../part-2/3- Global State Management/18- Preventing Unnecessary Renders with Selectors/A.tsx';
+import B from '../../../part-2/3- Global State Management/18- Preventing Unnecessary Renders with Selectors/B.tsx';
+import './App.css';
 
 function App() {
-  const heading = "Countries";
-  const items = ["New York", "Los Angeles", "San Francisco"];
-
   return (
-    <ListGroup
-      heading={heading}
-      items={items}
-      onSelectItem={(item) => console.log(item)}
-    />
+    <>
+      <A />
+      <B />
+    </>
   );
 }
 
