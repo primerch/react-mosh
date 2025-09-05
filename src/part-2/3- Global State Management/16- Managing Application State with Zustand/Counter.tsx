@@ -1,16 +1,21 @@
-import useCounterStore from './store';
+import useStore from './store';
 
 const Counter = () => {
-  const { counter, increment, reset } = useCounterStore();
+  const { value, increment, decrement, reset } = useStore();
   return (
     <>
-      Value: {counter}
-      <button className="btn btn-primary" onClick={() => increment()}>
-        Increease
-      </button>
-      <button className="btn btn-primary" onClick={() => reset()}>
-        Reset
-      </button>
+      <div className="badge badge-neutral m-5 text-xl">VALUE: {value}</div>
+      <div>
+        <button className="btn btn-primary m-5" onClick={() => increment()}>
+          INCREMENT
+        </button>
+        <button className="btn btn-secondary m-5" onClick={() => decrement()}>
+          DECREMENT
+        </button>
+        <button className="btn btn-info m-5" onClick={() => reset()}>
+          RESET
+        </button>
+      </div>
     </>
   );
 };

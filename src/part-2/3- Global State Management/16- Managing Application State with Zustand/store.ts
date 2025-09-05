@@ -1,15 +1,17 @@
 import { create } from 'zustand';
 
-interface CounterStore {
-  counter: number;
+interface Store {
+  value: number;
   increment: () => void;
+  decrement: () => void;
   reset: () => void;
 }
 
-const useCounterStore = create<CounterStore>((set) => ({
-  counter: 0,
-  increment: () => set((store) => ({ counter: store.counter + 1 })),
-  reset: () => set(() => ({ counter: 0 })),
+const useStore = create<Store>((set) => ({
+  value: 0,
+  increment: () => set((store) => ({ value: store.value + 1 })),
+  decrement: () => set((store) => ({ value: store.value - 1 })),
+  reset: () => set(() => ({ value: 0 })),
 }));
 
-export default useCounterStore;
+export default useStore;
