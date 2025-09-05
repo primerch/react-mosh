@@ -1,4 +1,7 @@
-import useAuth from './useAuth';
+import { useContext } from 'react';
+import AuthContext from './AuthContext';
+
+const useAuth = () => useContext(AuthContext);
 
 const LoginStatus = () => {
   const { username, dispatch } = useAuth();
