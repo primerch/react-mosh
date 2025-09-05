@@ -1,10 +1,10 @@
-import type { Dispatch } from "react";
-import type { Action } from "./authReducer";
-import React from "react";
+import type { Dispatch } from 'react';
+import React from 'react';
+import type { Action } from './authReducer';
 
 interface AuthContextType {
-    username: string;
-    authDispatch: Dispatch<Action>
+  username: string;
+  dispatch: Dispatch<Action>;
 }
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
