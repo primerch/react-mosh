@@ -1,3 +1,4 @@
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 import { create } from 'zustand';
 
 interface Store {
@@ -14,5 +15,8 @@ const useStore = create<Store>((set) => ({
   increaseA: () => set((store) => ({ valueA: store.valueA + 1 })),
   increaseB: () => set((store) => ({ valueB: store.valueB + 1 })),
 }));
+
+if (process.env.NODE_ENV === 'development')
+  mountStoreDevtool('Counter Store', useStore);
 
 export default useStore;
